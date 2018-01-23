@@ -4,7 +4,6 @@ package com.mvmlabs.springboot.common.exception;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,11 @@ public class GlobalExceptionHandler {
 		ErrorMessage em = new ErrorMessage(request.toString());
 		em.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.toString());
 		
-		em.setMessage(ExceptionUtils.getMessage(ex));
+		if(ex.getMessage() == null) {
+			em.setMessage(ex.getCause().getMessage());
+		} else {
+			em.setMessage(ex.getMessage());
+		}
 		
 		StringWriter sw = new StringWriter();
 		ex.printStackTrace(new PrintWriter(sw));

@@ -14,10 +14,6 @@
 		
 		<!-- jquery -->
 		<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-		
-		<!-- paging -->
-		<script src="/js/common/paging.js"></script>
-		
 	</head>
 	<body>
 		<header>
